@@ -1,0 +1,7 @@
+# NAMIARA Website - Gitignore
+*.pdf
+*.txt
+roadmap.md
+.DS_Store
+Thumbs.db
+*.log
