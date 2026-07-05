@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const animateCounter = (el) => {
     const target = parseInt(el.getAttribute('data-count'));
     const suffix = el.getAttribute('data-suffix') || '';
+    const noSeparator = el.hasAttribute('data-no-separator');
     const duration = 2000;
     const startTime = performance.now();
 
@@ -98,7 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const eased = 1 - Math.pow(1 - progress, 3);
       const currentValue = Math.round(eased * target);
 
-      el.textContent = currentValue.toLocaleString('fr-FR') + suffix;
+      if (noSeparator) {
+        el.textContent = currentValue + suffix;
+      } else {
+        el.textContent = currentValue.toLocaleString('fr-FR') + suffix;
+      }
 
       if (progress < 1) {
         requestAnimationFrame(updateCounter);
