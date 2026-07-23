@@ -119,19 +119,19 @@ img {
 .text-gradient {
   display: inline-block;
   background: linear-gradient(135deg, var(--green-soft), var(--orange-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-background-clip: text;
   color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-gold {
   display: inline-block;
   background: linear-gradient(135deg, var(--orange-light), var(--gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-background-clip: text;
   color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 /* --- Animated Background Shapes --- */
