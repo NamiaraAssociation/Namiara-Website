@@ -117,17 +117,31 @@ img {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--green-soft), var(--orange-light));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--green-soft); /* Fallback solid color */
 }
 
 .text-gradient-gold {
-  background: linear-gradient(135deg, var(--orange-light), var(--gold));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--gold); /* Fallback solid color */
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .text-gradient {
+    background: linear-gradient(135deg, #52B788, #F4A261);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #F4A261, #E9C46A);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
 }
 
 /* --- Animated Background Shapes --- */
