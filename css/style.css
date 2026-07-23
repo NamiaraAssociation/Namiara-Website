@@ -23,11 +23,11 @@
   --gold: #E9C46A;
 
   /* Dark palette */
-  --bg-dark: #060E09;
-  --bg-card: #0D1F14;
-  --bg-card-hover: #142B1C;
-  --bg-glass: rgba(13, 31, 20, 0.7);
-  --bg-glass-light: rgba(45, 106, 79, 0.12);
+  --bg-dark: #091810;
+  --bg-card: #102417;
+  --bg-card-hover: #16301F;
+  --bg-glass: rgba(16, 36, 23, 0.7);
+  --bg-glass-light: rgba(45, 106, 79, 0.15);
 
   /* Text */
   --text-primary: #F0F7F4;
@@ -117,6 +117,7 @@ img {
 }
 
 .text-gradient {
+  display: inline-block;
   background: linear-gradient(135deg, var(--green-soft), var(--orange-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -125,6 +126,7 @@ img {
 }
 
 .text-gradient-gold {
+  display: inline-block;
   background: linear-gradient(135deg, var(--orange-light), var(--gold));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -519,7 +521,7 @@ img {
 .section-header {
   text-align: center;
   max-width: 1100px;
-  margin: 0 auto 72px;
+  margin: 0 auto 56px;
 }
 
 .section-label {
@@ -531,7 +533,7 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--green-soft);
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .section-label::before,
@@ -545,7 +547,7 @@ img {
 
 .section-header h2 {
   font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   letter-spacing: -0.02em;
 }
 
@@ -643,7 +645,7 @@ img {
 
 /* --- Stats Bar --- */
 .stats-bar {
-  background: var(--bg-card);
+  background: transparent;
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
   padding: 48px 0;
