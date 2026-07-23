@@ -121,6 +121,7 @@ img {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
 }
 
 .text-gradient-gold {
@@ -128,6 +129,7 @@ img {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
 }
 
 /* --- Animated Background Shapes --- */
