@@ -231,16 +231,12 @@ img {
   text-decoration: none;
 }
 
-.nav-logo .logo-icon {
+.nav-logo .logo-img {
   width: 40px;
   height: 40px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--green-main), var(--green-soft));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  box-shadow: 0 0 20px rgba(45, 106, 79, 0.3);
+  border-radius: 10px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(45, 106, 79, 0.3));
 }
 
 .nav-links {
@@ -1479,6 +1475,18 @@ img {
   transform: translateY(0);
 }
 
+.stagger-children.visible>*:nth-child(7) {
+  transition-delay: 0.6s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-children.visible>*:nth-child(8) {
+  transition-delay: 0.7s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* --- Responsive --- */
 @media (max-width: 1024px) {
 
@@ -1603,4 +1611,272 @@ img {
 ::selection {
   background: rgba(82, 183, 136, 0.3);
   color: var(--text-primary);
+}
+
+/* --- Impact Bar (Chiffres Clés) --- */
+.impact-bar {
+  background: linear-gradient(135deg, var(--green-deep) 0%, var(--bg-dark) 100%);
+  padding: 100px 0;
+  position: relative;
+}
+
+.impact-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><circle cx="40" cy="40" r="1" fill="rgba(82,183,136,0.06)"/></svg>');
+  background-size: 40px 40px;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.impact-item {
+  padding: 40px 24px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  transition: all 0.4s var(--ease-smooth);
+}
+
+.impact-item:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-glow);
+}
+
+.impact-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.impact-number {
+  font-family: 'Outfit', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--green-soft);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.impact-label {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* --- Story Card (Notre Histoire) --- */
+.story-card {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.story-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--green-main), var(--orange-light), var(--green-soft));
+}
+
+.story-quote {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--green-pale);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.story-card p {
+  color: var(--text-secondary);
+  line-height: 1.9;
+  font-size: 1.05rem;
+  margin-bottom: 16px;
+}
+
+.story-card p:last-child {
+  margin-bottom: 0;
+}
+
+.story-card strong {
+  color: var(--text-primary);
+}
+
+/* --- Journal de Bord --- */
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.journal-card {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 32px;
+  transition: all 0.4s var(--ease-smooth);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.journal-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-glow);
+}
+
+.journal-date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.journal-month {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--orange-light);
+}
+
+.journal-year {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--green-soft);
+  line-height: 1;
+}
+
+.journal-card h4 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+
+.journal-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.journal-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  align-self: flex-start;
+}
+
+.journal-status.done {
+  background: rgba(82, 183, 136, 0.15);
+  color: var(--green-soft);
+  border: 1px solid rgba(82, 183, 136, 0.3);
+}
+
+.journal-status.progress {
+  background: rgba(244, 162, 97, 0.15);
+  color: var(--orange-light);
+  border: 1px solid rgba(244, 162, 97, 0.3);
+}
+
+.journal-status.upcoming {
+  background: rgba(167, 196, 181, 0.1);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+}
+
+/* --- Footer Legal --- */
+.footer-legal {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
+.footer-legal p {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  opacity: 0.7;
+}
+
+.footer-legal a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-legal a:hover {
+  color: var(--green-soft);
+}
+
+/* --- Responsive additions --- */
+@media (max-width: 1024px) {
+  .impact-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .journal-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .impact-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .impact-item {
+    padding: 28px 20px;
+  }
+
+  .impact-number {
+    font-size: 2.5rem;
+  }
+
+  .story-card {
+    padding: 32px 24px;
+  }
+
+  .story-quote {
+    font-size: 1.15rem;
+  }
+
+  .journal-grid {
+    grid-template-columns: 1fr;
+  }
 }

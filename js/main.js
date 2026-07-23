@@ -125,6 +125,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const statsBar = document.querySelector('.stats-bar');
   if (statsBar) statsObserver.observe(statsBar);
 
+  // ===== IMPACT COUNTER ANIMATION =====
+  const impactCounters = document.querySelectorAll('.impact-number[data-count]');
+  let impactAnimated = false;
+
+  const impactObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !impactAnimated) {
+        impactAnimated = true;
+        impactCounters.forEach(counter => animateCounter(counter));
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const impactBar = document.querySelector('.impact-bar');
+  if (impactBar) impactObserver.observe(impactBar);
+
   // ===== DONATION AMOUNT SELECTION =====
   const amountBtns = document.querySelectorAll('.amount-btn');
   const donateAmountEl = document.getElementById('donateAmount');
