@@ -117,11 +117,13 @@ img {
 }
 
 .text-gradient {
-  color: var(--green-soft); /* Fallback solid color */
+  color: var(--green-soft);
+  /* Fallback solid color */
 }
 
 .text-gradient-gold {
-  color: var(--gold); /* Fallback solid color */
+  color: var(--gold);
+  /* Fallback solid color */
 }
 
 @supports (background-clip: text) or (-webkit-background-clip: text) {
@@ -1892,5 +1894,94 @@ img {
 
   .journal-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   TERRAIN GALLERY
+   ============================================================ */
+
+.terrain-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.terrain-gallery-item {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  cursor: pointer;
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.terrain-gallery-item:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  border-color: var(--border-glow);
+}
+
+.terrain-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.terrain-gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.terrain-gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: linear-gradient(transparent, rgba(9, 24, 16, 0.9));
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+
+.terrain-gallery-item:hover .terrain-gallery-caption {
+  transform: translateY(0);
+}
+
+/* Appareils tactiles (sans souris) : légendes toujours visibles */
+@media (hover: none) {
+  .terrain-gallery-caption {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .terrain-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .terrain-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .terrain-gallery-caption {
+    transform: translateY(0);
+    font-size: 0.8rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .terrain-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 }

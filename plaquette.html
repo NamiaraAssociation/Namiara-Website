@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAMIARA — Plaquette de Présentation</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #222;
+      background: #fff;
+      line-height: 1.65;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      background: #fff;
+      padding: 48px 52px 60px;
+    }
+
+    .page:last-child {
+      page-break-after: avoid;
+    }
+
+    /* ===== HEADER BAR ===== */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #1B4332;
+    }
+
+    .page-header .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .page-header .logo-small {
+      height: 28px;
+      object-fit: contain;
+    }
+
+    .page-header .logo-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: #1B4332;
+      letter-spacing: 2px;
+    }
+
+    .page-header .page-num {
+      font-size: 11px;
+      color: #888;
+    }
+
+    /* ===== COVER ===== */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    .cover .page-header {
+      display: none;
+    }
+
+    .cover-logo {
+      width: 140px;
+      margin-bottom: 32px;
+    }
+
+    .cover h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: 5px;
+      color: #1B4332;
+      margin-bottom: 4px;
+    }
+
+    .cover .subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #555;
+      margin-bottom: 48px;
+    }
+
+    .cover .line {
+      width: 60px;
+      height: 2px;
+      background: #1B4332;
+      margin-bottom: 48px;
+    }
+
+    .cover .tagline {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 12px;
+    }
+
+    .cover .tagline em {
+      font-style: italic;
+      color: #2D6A4F;
+    }
+
+    .cover .philosophy {
+      font-style: italic;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 64px;
+    }
+
+    .cover-stats {
+      display: flex;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+
+    .cover-stat {
+      text-align: center;
+    }
+
+    .cover-stat .number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #1B4332;
+    }
+
+    .cover-stat .label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    .cover-footer {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 11px;
+      color: #888;
+    }
+
+    .cover-footer strong {
+      color: #1B4332;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #2D6A4F;
+      margin-bottom: 4px;
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: #1B4332;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #1B4332;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 12.5px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p strong {
+      color: #1B4332;
+    }
+
+    /* ===== DIVIDERS ===== */
+    .divider {
+      height: 1px;
+      background: #ddd;
+      margin: 20px 0;
+    }
+
+    /* ===== VALUES ROW ===== */
+    .values-row {
+      display: flex;
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .value-box {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px 8px;
+      text-align: center;
+    }
+
+    .value-box .icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .value-box .name {
+      font-size: 10px;
+      font-weight: 700;
+      color: #1B4332;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== NAME MEANING ===== */
+    .name-box {
+      border: 2px solid #1B4332;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 14px 0;
+    }
+
+    .name-box h3 {
+      margin-bottom: 4px;
+    }
+
+    .name-box p {
+      font-size: 12px;
+      color: #555;
+      margin: 0;
+    }
+
+    /* ===== HIGHLIGHT ===== */
+    .highlight {
+      background: #f5f5f5;
+      border-left: 3px solid #1B4332;
+      padding: 14px 18px;
+      margin: 14px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .highlight strong {
+      font-size: 13px;
+    }
+
+    .highlight p {
+      margin: 0;
+      font-size: 12px;
+    }
+
+    /* ===== TEAM GRID ===== */
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .team-member {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid #1B4332;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #1B4332;
+      flex-shrink: 0;
+    }
+
+    .team-member h5 {
+      font-size: 11px;
+      color: #222;
+      margin-bottom: 1px;
+    }
+
+    .team-member .role {
+      font-size: 9.5px;
+      color: #555;
+    }
+
+    /* ===== LOCATION ===== */
+    .location-box {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .location-box .flag {
+      font-size: 32px;
+    }
+
+    .location-box h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      color: #1B4332;
+      margin-bottom: 2px;
+    }
+
+    .location-box p {
+      font-size: 11px;
+      color: #555;
+      margin: 0;
+    }
+
+    /* ===== PROJECT CARDS ===== */
+    .projects-row {
+      display: flex;
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .project-box {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .project-box .tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 2px 8px;
+      border: 1px solid #1B4332;
+      border-radius: 12px;
+      color: #1B4332;
+      margin-bottom: 6px;
+    }
+
+    .project-box h4 {
+      font-size: 13px;
+      color: #222;
+      margin-bottom: 4px;
+    }
+
+    .project-box p {
+      font-size: 10.5px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .project-box ul {
+      list-style: none;
+    }
+
+    .project-box ul li {
+      font-size: 10.5px;
+      color: #444;
+      padding: 2px 0 2px 14px;
+      position: relative;
+    }
+
+    .project-box ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: #1B4332;
+      font-weight: 700;
+    }
+
+    /* ===== OBJECTIVES ===== */
+    .obj-row {
+      display: flex;
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .obj-box {
+      flex: 1;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px 8px;
+    }
+
+    .obj-box .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: #1B4332;
+    }
+
+    .obj-box .lbl {
+      font-size: 9.5px;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== HELP GRID ===== */
+    .help-grid {
+      display: flex;
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .help-box {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .help-box .icon {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .help-box h5 {
+      font-size: 12px;
+      color: #1B4332;
+      margin-bottom: 3px;
+    }
+
+    .help-box p {
+      font-size: 10.5px;
+      color: #555;
+      margin: 0;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-row {
+      display: flex;
+      gap: 12px;
+      margin: 12px 0;
+    }
+
+    .contact-item {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .contact-item .icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .contact-item h5 {
+      font-size: 11px;
+      color: #1B4332;
+      margin-bottom: 2px;
+    }
+
+    .contact-item p {
+      font-size: 11px;
+      color: #555;
+      margin: 0;
+    }
+
+    /* ===== CTA BOX ===== */
+    .cta-box {
+      border: 2px solid #1B4332;
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    .cta-box h3 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .cta-box p {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .cta-box .url {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #1B4332;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== PAGE FOOTER ===== */
+    .page-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 52px;
+      right: 52px;
+      border-top: 1px solid #ddd;
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: #999;
+    }
+
+    .page-footer .site {
+      color: #1B4332;
+      font-weight: 600;
+    }
+
+    @media print {
+      body {
+        margin: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        margin: 0;
+      }
+    }
+
+    @media screen {
+      .page {
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        margin: 30px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =============== PAGE 1 — COUVERTURE =============== -->
+  <div class="page cover">
+    <img src="images/Logo namiara.png" alt="Logo NAMIARA" class="cover-logo">
+    <h1>NAMIARA</h1>
+    <div class="subtitle">Humanitaire Internationale</div>
+    <div class="line"></div>
+    <div class="tagline">Chaque vie mérite <em>un horizon.</em></div>
+    <p class="philosophy">« Faire peu, mais le faire bien. »</p>
+
+    <div class="cover-stats">
+      <div class="cover-stat">
+        <div class="number">3</div>
+        <div class="label">Projets terrain</div>
+      </div>
+      <div class="cover-stat">
+        <div class="number">100%</div>
+        <div class="label">Dons sur le terrain</div>
+      </div>
+      <div class="cover-stat">
+        <div class="number">2027</div>
+        <div class="label">Première mission</div>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      Association loi 1901 · RNA : W061018649 · SIRET : 106 356 025 00010<br>
+      <strong>trunksanv1.github.io/Namiara</strong>
+    </div>
+  </div>
+
+  <!-- =============== PAGE 2 — QUI SOMMES-NOUS =============== -->
+  <div class="page">
+    <div class="page-header">
+      <div class="logo-row">
+        <img src="images/Logo namiara.png" alt="NAMIARA" class="logo-small">
+        <span class="logo-text">NAMIARA</span>
+      </div>
+      <span class="page-num">2 / 4</span>
+    </div>
+
+    <div class="section-label">Notre identité</div>
+    <h2>Qui sommes-nous ?</h2>
+
+    <div class="name-box">
+      <h3>Nami — le lien et l'amitié · Ara — le rassemblement</h3>
+      <p>NAMIARA porte en son nom sa raison d'être : créer du lien et rassembler pour un monde plus solidaire.</p>
+    </div>
+
+    <p>
+      Fondée le <strong>19 mai 2026</strong>, NAMIARA Humanitaire Internationale est une association loi 1901 dédiée
+      à la <strong>santé</strong>, la <strong>solidarité</strong> et l'<strong>éducation</strong> au Cameroun et
+      au-delà.
+    </p>
+    <p>
+      Notre philosophie : <em>faire peu, mais le faire bien</em>. Une aide ciblée, respectueuse et construite avec
+      les communautés locales a plus d'impact qu'une intervention massive sans ancrage.
+    </p>
+
+    <div class="values-row">
+      <div class="value-box">
+        <div class="icon">🤝</div>
+        <div class="name">Humilité</div>
+      </div>
+      <div class="value-box">
+        <div class="icon">💚</div>
+        <div class="name">Respect</div>
+      </div>
+      <div class="value-box">
+        <div class="icon">🎯</div>
+        <div class="name">Réalisme</div>
+      </div>
+      <div class="value-box">
+        <div class="icon">🌍</div>
+        <div class="name">Coopération</div>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong>100% des dons sont dédiés au terrain.</strong>
+      <p>Chaque euro donné va directement aux bénéficiaires au Cameroun. Aucun frais de fonctionnement n'est prélevé sur
+        les dons.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Notre force</div>
+    <h2>L'Équipe NAMIARA</h2>
+
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="avatar">AM</div>
+        <div>
+          <h5>Aminatou Mbouangouere</h5>
+          <div class="role">Présidente & Resp. Solidarité</div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="avatar">NM</div>
+        <div>
+          <h5>Nadia Mihoub</h5>
+          <div class="role">Trésorière & Resp. Administration</div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="avatar">ME</div>
+        <div>
+          <h5>Mohamed El Asri</h5>
+          <div class="role">Secrétaire, Resp. Coordination & Travaux</div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="avatar">HN</div>
+        <div>
+          <h5>Hassan N'Dam</h5>
+          <div class="role">Président d'honneur</div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="avatar">SE</div>
+        <div>
+          <h5>Samira El Asri</h5>
+          <div class="role">Responsable Éducation</div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="avatar">DL</div>
+        <div>
+          <h5>Dr Dominique Lanvin</h5>
+          <div class="role">Responsable Santé</div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="avatar">YB</div>
+        <div>
+          <h5>Yacoubé</h5>
+          <div class="role">Coordinateur Local — Cameroun</div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="avatar">+</div>
+        <div>
+          <h5>Bénévoles</h5>
+          <div class="role">Rejoignez l'aventure !</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Association loi 1901 · RNA : W061018649 · SIRET : 106 356 025 00010</span>
+      <span class="site">trunksanv1.github.io/Namiara</span>
+    </div>
+  </div>
+
+  <!-- =============== PAGE 3 — MISSION 2027 =============== -->
+  <div class="page">
+    <div class="page-header">
+      <div class="logo-row">
+        <img src="images/Logo namiara.png" alt="NAMIARA" class="logo-small">
+        <span class="logo-text">NAMIARA</span>
+      </div>
+      <span class="page-num">3 / 4</span>
+    </div>
+
+    <div class="section-label">Projet phare</div>
+    <h2>Mission Cameroun 2027</h2>
+
+    <div class="location-box">
+      <div class="flag">🇨🇲</div>
+      <div>
+        <h4>Foumbot — Ouest Cameroun</h4>
+        <p>Zone rurale avec des besoins importants en santé, éducation et nutrition. Mission prévue en avril 2027.</p>
+      </div>
+    </div>
+
+    <p>
+      Grâce à une collaboration étroite avec notre coordinateur local <strong>Yacoubé</strong>, nous avons identifié
+      les besoins les plus urgents et construit un programme d'action concret articulé autour de <strong>trois
+        projets complémentaires</strong>.
+    </p>
+
+    <div class="projects-row">
+      <div class="project-box">
+        <span class="tag">Éducation</span>
+        <h4>📚 Projet Scolaire Coopératif</h4>
+        <p>Un pont éducatif entre la France et le Cameroun.</p>
+        <ul>
+          <li>Correspondance entre écoles</li>
+          <li>Sujets de travaux communs</li>
+          <li>Réfection d'une école locale</li>
+          <li>Fournitures scolaires</li>
+        </ul>
+      </div>
+      <div class="project-box">
+        <span class="tag">Nutrition</span>
+        <h4>🍚 Distribution Alimentaire</h4>
+        <p>Aide nutritionnelle directe aux familles.</p>
+        <ul>
+          <li>Colis alimentaires</li>
+          <li>Achat de produits locaux</li>
+          <li>Ciblage des familles vulnérables</li>
+          <li>Alimentation équilibrée</li>
+        </ul>
+      </div>
+      <div class="project-box">
+        <span class="tag">Santé</span>
+        <h4>🩺 Consultations Médicales</h4>
+        <p>Santé de proximité dans les villages.</p>
+        <ul>
+          <li>Consultations gratuites</li>
+          <li>Dépistage et prévention</li>
+          <li>Aide aux soins</li>
+          <li>Matériel d'hygiène</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Objectifs</div>
+    <h2>Ce que nous visons concrètement</h2>
+
+    <div class="obj-row">
+      <div class="obj-box">
+        <div class="num">500</div>
+        <div class="lbl">Consultations médicales</div>
+      </div>
+      <div class="obj-box">
+        <div class="num">1</div>
+        <div class="lbl">École soutenue</div>
+      </div>
+      <div class="obj-box">
+        <div class="num">200+</div>
+        <div class="lbl">Colis alimentaires</div>
+      </div>
+      <div class="obj-box">
+        <div class="num">100%</div>
+        <div class="lbl">Dons sur le terrain</div>
+      </div>
+    </div>
+
+    <p style="font-size: 10.5px; color: #888; text-align: center;">
+      <em>Objectifs indicatifs — ajustés selon les fonds collectés et les besoins identifiés sur place.</em>
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Besoins matériels</div>
+    <h2>Nous avons aussi besoin de matériel</h2>
+    <p>
+      🩺 Tensiomètres · 💉 Oxymètres de pouls · 🧴 Produits d'hygiène · 📦 Matériel médical de base · 📚 Fournitures
+      scolaires · 🧼 Kits sanitaires
+    </p>
+
+    <div class="page-footer">
+      <span>Association loi 1901 · RNA : W061018649 · SIRET : 106 356 025 00010</span>
+      <span class="site">trunksanv1.github.io/Namiara</span>
+    </div>
+  </div>
+
+  <!-- =============== PAGE 4 — AIDER + CONTACT =============== -->
+  <div class="page">
+    <div class="page-header">
+      <div class="logo-row">
+        <img src="images/Logo namiara.png" alt="NAMIARA" class="logo-small">
+        <span class="logo-text">NAMIARA</span>
+      </div>
+      <span class="page-num">4 / 4</span>
+    </div>
+
+    <div class="section-label">S'engager</div>
+    <h2>Comment nous aider ?</h2>
+
+    <div class="help-grid">
+      <div class="help-box">
+        <div class="icon">💛</div>
+        <h5>Faire un don</h5>
+        <p>Chaque contribution finance directement nos actions au Cameroun.</p>
+      </div>
+      <div class="help-box">
+        <div class="icon">🏢</div>
+        <h5>Devenir partenaire</h5>
+        <p>Entreprises, associations, collectivités — associez votre nom à la cause.</p>
+      </div>
+      <div class="help-box">
+        <div class="icon">🤝</div>
+        <h5>Devenir bénévole</h5>
+        <p>Professionnels de santé, étudiants — tous les profils sont bienvenus.</p>
+      </div>
+      <div class="help-box">
+        <div class="icon">📦</div>
+        <h5>Don de matériel</h5>
+        <p>Matériel médical, produits d'hygiène, fournitures scolaires.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Partenariat</div>
+    <h2>Devenir Partenaire</h2>
+
+    <p>Chez NAMIARA, nous croyons que les grandes causes se construisent ensemble. Devenir partenaire, c'est rejoindre
+      un mouvement qui place l'humain au centre de chaque action.</p>
+
+    <div class="values-row">
+      <div class="value-box">
+        <div class="icon" style="font-size: 18px;">🏢</div>
+        <div class="name">Entreprise</div>
+      </div>
+      <div class="value-box">
+        <div class="icon" style="font-size: 18px;">🏫</div>
+        <div class="name">Éducatif</div>
+      </div>
+      <div class="value-box">
+        <div class="icon" style="font-size: 18px;">🏥</div>
+        <div class="name">Médical</div>
+      </div>
+      <div class="value-box">
+        <div class="icon" style="font-size: 18px;">🤲</div>
+        <div class="name">Associatif</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Nous contacter</div>
+    <h2>Rejoignez l'aventure</h2>
+
+    <div class="contact-row">
+      <div class="contact-item">
+        <div class="icon">📧</div>
+        <h5>Email</h5>
+        <p>namiara-hum-int-asso@outlook.fr</p>
+      </div>
+      <div class="contact-item">
+        <div class="icon">🌐</div>
+        <h5>Site web</h5>
+        <p>trunksanv1.github.io/Namiara</p>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📍</div>
+        <h5>Siège</h5>
+        <p>France</p>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h3>Découvrez notre projet en ligne</h3>
+      <p>Toutes les informations détaillées sur notre mission, notre équipe et nos actions.</p>
+      <div class="url">🌐 trunksanv1.github.io/Namiara</div>
+    </div>
+
+    <div class="page-footer">
+      <span>Association loi 1901 · RNA : W061018649 · SIRET : 106 356 025 00010 · Ne délivre pas de reçu fiscal</span>
+      <span class="site">trunksanv1.github.io/Namiara</span>
+    </div>
+  </div>
+
+</body>
+
+</html>
