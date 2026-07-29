@@ -226,6 +226,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 5000);
   }
 
+  // ===== URL PARAMS NOTIFICATION (FormSubmit Success) =====
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('success') === 'true') {
+    showNotification('Merci ! Votre message a bien été envoyé. 🌍', 'success');
+    // Clean the URL to remove the parameter
+    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.replaceState({path:newUrl}, '', newUrl);
+  }
+
   // ===== SMOOTH SCROLL FOR ALL ANCHOR LINKS =====
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
