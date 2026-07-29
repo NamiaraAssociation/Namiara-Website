@@ -18,6 +18,8 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
 
     body {
@@ -42,6 +44,40 @@
 
     .page:last-child {
       page-break-after: avoid;
+    }
+
+    /* Floating PDF Button */
+    .pdf-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #E8A359;
+      color: #111;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pdf-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(232, 163, 89, 0.6);
+      background: #f0b576;
+    }
+
+    @media print {
+      .pdf-btn {
+        display: none !important;
+      }
     }
 
     /* ===== HEADER BAR ===== */
@@ -753,7 +789,7 @@
 
     <p>
       Grâce à une collaboration étroite avec notre coordinateur local <strong>Yacoubé</strong>, nous avons identifié
-      les besoins les plus urgents et construit un programme d'action concret articulé autour de <strong>trois
+      les besoins les plus urgents et construit un programme d'action concret articulé autour de <strong>quatre
         projets complémentaires</strong>.
     </p>
 
@@ -789,6 +825,17 @@
           <li>Dépistage et prévention</li>
           <li>Aide aux soins</li>
           <li>Matériel d'hygiène</li>
+        </ul>
+      </div>
+      <div class="project-box">
+        <span class="tag" style="background: #0077b6; color: white;">Eau</span>
+        <h4>💧 Forage & Accès à l'Eau</h4>
+        <p>Garantir l'accès à l'eau potable.</p>
+        <ul>
+          <li>Forage d'un puits</li>
+          <li>Pompe manuelle</li>
+          <li>Hygiène globale</li>
+          <li>Distribution d'eau</li>
         </ul>
       </div>
     </div>
@@ -933,7 +980,12 @@
       <span class="site">trunksanv1.github.io/Namiara</span>
     </div>
   </div>
+  </div>
 
+  <!-- PDF Download Button -->
+  <button class="pdf-btn" onclick="window.print()">
+    📥 Télécharger en PDF
+  </button>
 </body>
 
 </html>
