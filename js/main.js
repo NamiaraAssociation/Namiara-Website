@@ -201,29 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ===== CONTACT FORM =====
-  const contactBtn = document.getElementById('contactBtn');
-  if (contactBtn) {
-    contactBtn.addEventListener('click', () => {
-      const name = document.getElementById('contactName').value.trim();
-      const email = document.getElementById('contactEmail').value.trim();
-      const message = document.getElementById('contactMessage').value.trim();
-
-      if (!name || !email || !message) {
-        showNotification('Veuillez remplir tous les champs obligatoires (*).', 'warning');
-        return;
-      }
-
-      showNotification(`Merci ${name} ! Votre message a bien été envoyé. Nous vous répondrons rapidement. 🌍`, 'success');
-
-      // Reset
-      document.getElementById('contactName').value = '';
-      document.getElementById('contactEmail').value = '';
-      document.getElementById('contactSubject').value = '';
-      document.getElementById('contactProfile').value = '';
-      document.getElementById('contactMessage').value = '';
-    });
-  }
 
   // ===== NOTIFICATION SYSTEM =====
   function showNotification(message, type = 'info') {
