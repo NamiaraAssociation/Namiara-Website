@@ -141,65 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const impactBar = document.querySelector('.impact-bar');
   if (impactBar) impactObserver.observe(impactBar);
 
-  // ===== DONATION AMOUNT SELECTION =====
-  const amountBtns = document.querySelectorAll('.amount-btn');
-  const donateAmountEl = document.getElementById('donateAmount');
-  const customAmountGroup = document.getElementById('customAmountGroup');
-  const customAmountInput = document.getElementById('customAmount');
-  let selectedAmount = 50;
 
-  amountBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      amountBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const amount = btn.getAttribute('data-amount');
-      if (amount === 'custom') {
-        customAmountGroup.style.display = 'block';
-        customAmountInput.focus();
-        selectedAmount = parseInt(customAmountInput.value) || 0;
-        donateAmountEl.textContent = selectedAmount || '...';
-      } else {
-        customAmountGroup.style.display = 'none';
-        selectedAmount = parseInt(amount);
-        donateAmountEl.textContent = selectedAmount;
-      }
-    });
-  });
-
-  if (customAmountInput) {
-    customAmountInput.addEventListener('input', () => {
-      selectedAmount = parseInt(customAmountInput.value) || 0;
-      donateAmountEl.textContent = selectedAmount || '...';
-    });
-  }
-
-  // ===== DONATE BUTTON =====
-  const donateBtn = document.getElementById('donateBtn');
-  if (donateBtn) {
-    donateBtn.addEventListener('click', () => {
-      const name = document.getElementById('donorName').value.trim();
-      const email = document.getElementById('donorEmail').value.trim();
-
-      if (!name || !email) {
-        showNotification('Veuillez remplir votre nom et email.', 'warning');
-        return;
-      }
-
-      if (!selectedAmount || selectedAmount <= 0) {
-        showNotification('Veuillez sélectionner un montant.', 'warning');
-        return;
-      }
-
-      // Simulate success
-      showNotification(`Merci ${name} ! Votre don de ${selectedAmount}€ a bien été enregistré. 💚`, 'success');
-
-      // Reset form
-      document.getElementById('donorName').value = '';
-      document.getElementById('donorEmail').value = '';
-      document.getElementById('donorMessage').value = '';
-    });
-  }
 
 
   // ===== NOTIFICATION SYSTEM =====
