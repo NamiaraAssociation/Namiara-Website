@@ -429,6 +429,63 @@
       font-weight: 600;
       text-transform: uppercase;
     }
+
+    /* QR Code — Recto (centré en bas) */
+    .recto-qr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+
+    .recto-qr img {
+      width: 65px;
+      height: 65px;
+      border-radius: 6px;
+      background: white;
+      padding: 3px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .recto-qr span {
+      font-size: 0.55rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* QR Code — Verso (bas gauche) */
+    .verso-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 2px solid #EAEAEA;
+      padding-top: 1rem;
+    }
+
+    .verso-qr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .verso-qr img {
+      width: 60px;
+      height: 60px;
+      border-radius: 6px;
+      border: 2px solid #1E3B2A;
+    }
+
+    .verso-qr span {
+      font-size: 0.55rem;
+      color: #666;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 
@@ -473,6 +530,12 @@
           <p><strong>Transparence</strong>100% des dons au terrain</p>
         </div>
       </div>
+    </div>
+
+    <!-- QR Code centré en bas -->
+    <div class="recto-qr">
+      <img src="images/qrcode.png" alt="QR Code NAMIARA">
+      <span>Scannez-moi !</span>
     </div>
   </div>
 
@@ -534,14 +597,14 @@
 
     <!-- Contact & Footer -->
     <div class="verso-footer">
+      <div class="verso-qr">
+        <img src="images/qrcode.png" alt="QR Code NAMIARA">
+        <span>Scannez-moi !</span>
+      </div>
       <div class="contact-list">
         <p><span class="icon">📧</span> namiara-hum-int-asso@outlook.fr</p>
         <p><span class="icon">🌐</span> namiara.fr</p>
         <p style="font-size: 0.65rem; color: #888; margin-top: 0.3rem;">Association loi 1901 — RNA : W061018649<br>SIRET : 106 356 025 00010</p>
-      </div>
-      <div class="qr-box">
-        <img src="images/qrcodewebsite.png" alt="QR Code namiara.fr" style="width: 70px; height: 70px; border-radius: 6px;">
-        <span class="qr-text">Scannez-moi !</span>
       </div>
     </div>
   </div>
