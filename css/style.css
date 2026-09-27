@@ -1796,6 +1796,20 @@ img {
   line-height: 1;
 }
 
+.journal-date-range {
+  display: inline-block;
+  margin-top: 0;
+  padding: 6px 16px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--green-soft);
+  background: transparent;
+  border: 2px solid var(--orange-light);
+  border-radius: 12px;
+}
+
 .journal-card h4 {
   font-size: 1.15rem;
   margin-bottom: 10px;
